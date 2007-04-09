@@ -1,0 +1,6 @@
+Revision history for Perl extension Log::Cabin.
+
+0.01  Wed Apr 19 10:49:45 2006
+	- original version; created by h2xs 1.23 with options
+		-X -n Log::Cabin
+
