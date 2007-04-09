@@ -1,6 +1,5 @@
 package Log::Cabin::Foundation;
 
-use 5.008005;
 use strict;
 use warnings;
 
@@ -26,7 +25,7 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 # Preloaded methods go here.
