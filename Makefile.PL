@@ -4,7 +4,10 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME              => 'Log::Cabin',
     VERSION_FROM      => 'lib/Log/Cabin.pm', # finds $VERSION
-    PREREQ_PM         => {}, # e.g., Module::Name => 1.1
+    PREREQ_PM         => {
+                            'IO::Tee' => 0,
+                            'Time::HiRes' => 0,
+                         }, 
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/Log/Cabin.pm', # retrieve abstract from module
        AUTHOR         => 'Samuel Angiuoli <angiuoli@tigr.org>') : ()),
