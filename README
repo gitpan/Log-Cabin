@@ -1,16 +1,16 @@
-Log-Cabin version 0.01
+Log-Cabin version 0.04
 ======================
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+Log::Cabin provides a selection of the features of Log::Log4perl but with 
+a focus on reduced disk IO.  Just calling 'use Log::Log4perl' results in
+hundreds of stat calls to the file system.  If you have a shared file system
+with many nodes running perl scripts at once, this could result in a significant
+decrease in performance.
 
-A README file is required for CPAN modules since CPAN extracts the
-README file from a module distribution so that people browsing the
-archive can use it get an idea of the modules uses. It is usually a
-good idea to provide version information here so that people can
-decide whether fixes for the module are worth downloading.
+After implementing this module we were able to cut up to 70,000 stat/open
+calls per second on our NFS.  Of course, this module doesn't currently support
+all the features of Log::Log4perl, but many of the most comment ones are
+implemented.
 
 INSTALLATION
 
@@ -25,16 +25,16 @@ DEPENDENCIES
 
 This module requires these other modules and libraries:
 
-  blah blah blah
+  IO::Tee
+  Time::HiRes
 
 COPYRIGHT AND LICENCE
 
-Put the correct copyright and licence information here.
+This module is available under the Artistic License
 
-Copyright (C) 2006 by Samuel Angiuoli
+http://www.opensource.org/licenses/artistic-license.php
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.8.5 or,
-at your option, any later version of Perl 5 you may have available.
+Copyright (C) 2006-2007 by Joshua Orvis and Sam Angiuoli
+
 
 

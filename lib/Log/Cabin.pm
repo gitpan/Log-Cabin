@@ -25,7 +25,7 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 
 # Preloaded methods go here.
@@ -188,53 +188,71 @@ sub get_logger {
 
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
 
 =head1 NAME
 
-Log::Cabin - Perl extension for blah blah blah
+Log::Cabin - Partial implementation of Log::Log4perl with reduced disk IO.
 
 =head1 SYNOPSIS
 
-  use Log::Cabin;
-  blah blah blah
+    use Log::Cabin;
+
+    my $log_level = 'WARN';
+
+    my $logsimple = new Log::Cabin();
+    $logsimple->level( 4 );
+
+    $logsimple->set_file_output( 'some.file.log' );
+    # another option
+    # $logsimple->set_output(*STDERR);
+
+    my $logger = $logsimple->get_logger('some.category');
+
+    $logger->debug("this is a debug message");
+    $logger->info("here's an info message");
+    $logger->warn("now a warning message");
+    $logger->error("things are going down");
+    $logger->fatal("it's all gone pete tong");
+    
+    #### the output some.file.log will look like this ####
+    some.category INFO Wed Apr 18 02:27:10 2007 colossus:21151 ./test.pl:main:Log::Cabin::Foundation::info:18 || here's an info message
+    some.category WARN Wed Apr 18 02:27:10 2007 colossus:21151 ./test.pl:main:Log::Cabin::Foundation::warn:19 || now a warning message
+    some.category ERROR Wed Apr 18 02:27:10 2007 colossus:21151 ./test.pl:main:Log::Cabin::Foundation::error:20 || things are going down
+    some.category FATAL Wed Apr 18 02:27:10 2007 colossus:21151 ./test.pl:main:Log::Cabin::Foundation::fatal:21 || it's all gone pete tong       
+    ######################################################
 
 =head1 DESCRIPTION
 
-Stub documentation for Log::Cabin, created by h2xs. It looks like the
-author of the extension was negligent enough to leave the stub
-unedited.
+Log::Cabin provides a selection of the features of Log::Log4perl but with 
+a focus on reduced disk IO.  Just calling 'use Log::Log4perl' results in
+hundreds of stat calls to the file system.  If you have a shared file system
+with many nodes running perl scripts at once, this could result in a significant
+decrease in performance.
 
-Blah blah blah.
+After implementing this module we were able to cut up to 70,000 stat/open
+calls per second on our NFS.  Of course, this module doesn't currently support
+all the features of Log::Log4perl, but many of the most comment ones are
+implemented.
 
 =head2 EXPORT
 
 None by default.
 
-
-
 =head1 SEE ALSO
 
-Mention other useful documentation such as the documentation of
-related modules or operating system documentation (such as man pages
-in UNIX), or any relevant external documentation such as RFCs or
-standards.
-
-If you have a mailing list set up for your module, mention it here.
-
-If you have a web site set up for your module, mention it here.
+The usage of this module is similar to Log::Log4perl.
 
 =head1 AUTHOR
 
-Samuel Angiuoli, E<lt>angiuoli@tigr.orgE<gt>
+Joshua Orvis, E<lt>jorvis@tigr.orgE<gt> and Sam Angiuoli, E<lt>angiuoli@tigr.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2006 by Samuel Angiuoli
+This module is available under the Artistic License
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.8.5 or,
-at your option, any later version of Perl 5 you may have available.
+http://www.opensource.org/licenses/artistic-license.php
+
+Copyright (C) 2006-2007 by Joshua Orvis and Sam Angiuoli
 
 
 =cut
