@@ -1,4 +1,4 @@
-Log-Cabin version 0.04
+Log-Cabin version 0.05
 ======================
 
 Log::Cabin provides a selection of the features of Log::Log4perl but with 
@@ -23,10 +23,7 @@ To install this module type the following:
 
 DEPENDENCIES
 
-This module requires these other modules and libraries:
-
-  IO::Tee
-  Time::HiRes
+none
 
 COPYRIGHT AND LICENCE
 

@@ -25,7 +25,7 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 
 # Preloaded methods go here.
@@ -43,7 +43,7 @@ my $ALL=6;
 sub new {
     my $class = shift;
 
-    #This singleton is an instance of Log::Simple This singleton is
+    #This singleton is an instance of Log::Cabin This singleton is
     #required to have all multiple logger instances write to the same
     #log files with access to the global logger settings
     my $loggersingleton = shift;
@@ -51,8 +51,7 @@ sub new {
 
     my $self = bless {}, ref($class) || $class;
 
-    $name = 'default' if(!defined $name);
-
+    $name = 'default' if (!defined $name);
     $self->{_name} = $name;
 
     die if(!defined $loggersingleton);
@@ -60,6 +59,10 @@ sub new {
     $self->{_LOG_LEVEL} = $self->level();
 
     return $self;
+}
+
+sub name {
+    return $_[0]->{_name};
 }
 
 sub set_logger_instance{
@@ -133,9 +136,9 @@ sub is_debug{
 #
 #Set log levels for named logger
 #These log levels will be overridden by the global log level set in the singleton instance of
-#Log::LogSimple
+#Log::Cabin
 
-sub level{
+sub level {
     my($self,$level) = @_;
     $self->{_logsimpleobj}->level($level);
 }
@@ -154,7 +157,6 @@ sub less_logging{
 
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
 
 =head1 NAME
 
@@ -178,7 +180,7 @@ See perldoc for Log::Cabin
 
 =head1 AUTHOR
 
-Joshua Orvis, E<lt>jorvis@tigr.orgE<gt> and Sam Angiuoli, E<lt>angiuoli@tigr.orgE<gt>
+Joshua Orvis, E<lt>jorvis@users.sourceforge.netE<gt> and Sam Angiuoli, E<lt>angiuoli@users.sourceforge.netE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
