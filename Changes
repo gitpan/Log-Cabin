@@ -1,5 +1,9 @@
 Revision history for Perl extension Log::Cabin.
 
+0.06
+    - Fixed bug (identified by Crabtree and Galens) involving set_logger_instance
+      calls on all logger instances.
+
 0.05
     - Multiple calls to get_logger with the same instance name now
       returns the same Foundation object.

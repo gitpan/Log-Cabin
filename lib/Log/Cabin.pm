@@ -25,7 +25,7 @@ our @EXPORT = qw(
     
 );
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 
 # Preloaded methods go here.
@@ -71,8 +71,7 @@ sub new {
             $_IS_INIT=1;
             $SINGLETON_INSTANCE = $self;
             
-            ## what is the point of this???
-            for (keys %ALL_LOGGERS) {
+            for (values %ALL_LOGGERS) {
                 $_->set_logger_instance($SINGLETON_INSTANCE);
             }
         }

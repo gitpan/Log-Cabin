@@ -1,4 +1,4 @@
-Log-Cabin version 0.05
+Log-Cabin version 0.06
 ======================
 
 Log::Cabin provides a selection of the features of Log::Log4perl but with 
@@ -31,7 +31,7 @@ This module is available under the Artistic License
 
 http://www.opensource.org/licenses/artistic-license.php
 
-Copyright (C) 2006-2007 by Joshua Orvis and Sam Angiuoli
+Copyright (C) 2006-2008 by Joshua Orvis and Sam Angiuoli
 
 
 
